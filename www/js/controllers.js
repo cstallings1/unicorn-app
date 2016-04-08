@@ -8,8 +8,9 @@ angular.module('starter.controllers', [])
    });
 
   $scope.loadMoreGifs = function() {
-    Unicorns.GetMoreGifs().then(function(unicornGifs) {
-      $scope.gifs = $scope.gifs.concat(unicornGifs.data);
+    Unicorns.GetMoreGifs($scope.gifs).then(function(unicornGifs) {
+      // console.log(unicornGifs);
+      $scope.gifs = unicornGifs;
       // $scope.gifs = unicornGifs.data;
       $scope.$broadcast('scroll.infiniteScrollComplete');
     });
