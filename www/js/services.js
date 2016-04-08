@@ -1,13 +1,29 @@
 angular.module('starter.services', [])
 
-.factory('Unicorns', function($http) {
-  return $http.get('http://api.giphy.com/v1/gifs/search?q=unicorn&api_key=dc6zaTOxFJmzC').success(function(resp) {
-    var unicornGifs = resp.data;
-    console.log(unicornGifs)
-    return unicornGifs;
-  });
-});
+.factory('Unicorns', function($http, $q) {
+  var unicornGifs = [];
 
+  return {
+    GetFeed: function(){
+
+      return $http.get('http://api.giphy.com/v1/gifs/search?q=unicorn&limit=10&api_key=dc6zaTOxFJmzC').then(function(response){
+        unicornGifs = response.data;
+
+        return unicornGifs;
+      });
+    },
+    GetMoreGifs: function(array){
+      console.log(array.length)
+      return $http.get('http://api.giphy.com/v1/gifs/search?q=unicorn&limit=10&offset=' + array.length + '&api_key=dc6zaTOxFJmzC').then(function(response){
+        unicornGifs = array.concat(response.data.data);
+
+        return unicornGifs;
+      });
+    }
+  }
+
+
+});
 
 
 

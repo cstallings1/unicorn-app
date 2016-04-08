@@ -30,10 +30,23 @@
         <h1 class="title">All The Unicorns</h1>
       </ion-header-bar>
       <ion-content>
-        <ion-item ng-repeat="gif in gifs">
-        <img ng-src="{{ gif.images.fixed_height_small.url }}">
-      </ion-item>
+        <!-- <div ng-repeat="gif in gifs">
+          <div class="row" ng-if="$even">
+            <div class="col col-50" ng-repeat="gif in [gifs[$index],gifs[$index + 1]]">
+              <img class="gif-thumbnail" ng-src="{{ gif.images.fixed_height.url }}">
+            </div>
+          </div>
+        </div> -->
+
+          <img ng-repeat="gif in gifs track by $index" class="gif-thumbnail" ng-src="{{ gif.images.fixed_height_small.url }}">
+
+          <ion-infinite-scroll immediate-check="false" on-infinite="loadMoreGifs()" distance="5%"></ion-infinite-scroll>
+
       </ion-content>
     </ion-pane>
   </body>
 </html>
+
+
+
+
