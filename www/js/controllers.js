@@ -1,15 +1,22 @@
 angular.module('starter.controllers', [])
 
-.controller('UnicornCtrl', function($scope, $ionicModal, Unicorns) {
+.controller('UnicornCtrl', function($scope, $ionicModal, $ionicScrollDelegate, Unicorns) {
   $scope.gifs = [];
 
-  Unicorns.GetFeed().then(function(unicornGifs) {
-     $scope.gifs = unicornGifs.data;
+  Unicorns.search('unicorns').then(function(gifs) {
+     $scope.gifs = gifs.data;
    });
 
+  $scope.search = function(term) {
+    Unicorns.search(term).then(function(gifs) {
+      $scope.gifs = gifs.data;
+      $ionicScrollDelegate.scrollTop();
+    }
+    )};
+
   $scope.loadMoreGifs = function() {
-    Unicorns.GetMoreGifs($scope.gifs).then(function(unicornGifs) {
-      $scope.gifs = unicornGifs;
+    Unicorns.GetMoreGifs($scope.gifs).then(function(gifs) {
+      $scope.gifs = gifs;
       $scope.$broadcast('scroll.infiniteScrollComplete');
     });
   };
