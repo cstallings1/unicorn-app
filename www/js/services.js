@@ -13,7 +13,7 @@ angular.module('starter.services', [])
       });
     },
     GetMoreGifs: function(array){
-      console.log(array.length)
+
       return $http.get('http://api.giphy.com/v1/gifs/search?q=unicorn&limit=10&offset=' + array.length + '&api_key=dc6zaTOxFJmzC').then(function(response){
         unicornGifs = array.concat(response.data.data);
 

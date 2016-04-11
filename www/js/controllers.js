@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('UnicornCtrl', function($scope, Unicorns) {
+.controller('UnicornCtrl', function($scope, $ionicModal, Unicorns) {
   $scope.gifs = [];
 
   Unicorns.GetFeed().then(function(unicornGifs) {
@@ -9,11 +9,29 @@ angular.module('starter.controllers', [])
 
   $scope.loadMoreGifs = function() {
     Unicorns.GetMoreGifs($scope.gifs).then(function(unicornGifs) {
-      // console.log(unicornGifs);
       $scope.gifs = unicornGifs;
-      // $scope.gifs = unicornGifs.data;
       $scope.$broadcast('scroll.infiniteScrollComplete');
     });
+  };
+
+  $scope.showImages = function(index) {
+    $scope.activeSlide = index;
+    $scope.showModal('templates/image-popover.html')
+  }
+
+  $scope.showModal = function(templateUrl) {
+    $ionicModal.fromTemplateUrl(templateUrl, {
+      scope: $scope,
+      animation: 'slide-in-left'
+    }).then(function(modal) {
+      $scope.modal = modal;
+      $scope.modal.show();
+    });
+  }
+
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+    $scope.modal.remove()
   };
 
 });
