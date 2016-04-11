@@ -34,4 +34,6 @@ angular.module('starter.controllers', [])
     $scope.modal.remove()
   };
 
-});
+})
+
+
