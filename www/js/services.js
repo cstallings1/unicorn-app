@@ -58,7 +58,6 @@ angular.module('starter.services', [])
       obj.favorites.unshift(gif);
     },
     returnFavorites: function() {
-      debugger;
       return obj.favorites;
     }
   }
