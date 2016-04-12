@@ -22,7 +22,15 @@
 }
 
 .bar.bar-subheader {
-  height: 56px;
+  height: 45px;
 }
+
+label.item.item-input {
+  height: 36px;
+}
+
+
+
+
 
 

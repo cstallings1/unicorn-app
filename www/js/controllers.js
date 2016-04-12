@@ -43,4 +43,39 @@ angular.module('starter.controllers', [])
 
 })
 
+.controller('TrendingCtrl', function($scope, $ionicModal, Trending) {
+  $scope.gifs = [];
+
+  Trending.GetTrending().then(function(gifs) {
+     $scope.gifs = gifs.data;
+   });
+
+  $scope.loadMoreGifs = function() {
+    Trending.GetMoreGifs($scope.gifs).then(function(gifs) {
+      $scope.gifs = gifs;
+      $scope.$broadcast('scroll.infiniteScrollComplete');
+    });
+  };
+
+  $scope.showImages = function(index) {
+    $scope.activeSlide = index;
+    $scope.showModal('templates/image-popover.html')
+  }
+
+  $scope.showModal = function(templateUrl) {
+    $ionicModal.fromTemplateUrl(templateUrl, {
+      scope: $scope,
+      animation: 'slide-in-left'
+    }).then(function(modal) {
+      $scope.modal = modal;
+      $scope.modal.show();
+    });
+  }
+
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+    $scope.modal.remove()
+  };
+});
+
 
