@@ -53,6 +53,16 @@ var app = angular.module('starter', ['ionic', 'starter.services', 'starter.contr
         }
       }
     })
+
+  .state('tab.favorites', {
+      url: '/favorites',
+      views: {
+        'tab-favorites': {
+          templateUrl: 'templates/favorites.html',
+          controller: 'FavoritesCtrl'
+        }
+      }
+    })
   // If none of the above states are matched, use this as the fallback:
   $urlRouterProvider.otherwise('/tab/home');
 

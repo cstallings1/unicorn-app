@@ -1,0 +1,6 @@
+<ion-view view-title="Favorites" class="favorites-page">
+  <ion-content>
+    <img ng-repeat="gif in gifs track by $index" class="gif-thumbnail" ng-src="{{ gif.images.fixed_height_small.url }}" ng-click="showImages($index)">
+    <!-- <ion-infinite-scroll immediate-check="false" on-infinite="loadMoreGifs()" distance="5%"></ion-infinite-scroll> -->
+  </ion-content>
+</ion-view>

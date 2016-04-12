@@ -29,6 +29,15 @@ label.item.item-input {
   height: 36px;
 }
 
+button {
+  bottom: 27%;
+  position: absolute;
+  left: 39%;
+  width: 20%;
+  background-color: white;
+  border: none;
+  color: grey;
+}
 
 
 

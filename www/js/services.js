@@ -27,7 +27,7 @@ angular.module('starter.services', [])
 
 .factory('Trending', function($http) {
   var obj = {
-    gifs: [],
+    gifs: []
   };
 
   return {
@@ -44,6 +44,22 @@ angular.module('starter.services', [])
         gifs = array.concat(response.data.data);
         return gifs;
       });
+    }
+  }
+})
+
+.factory('User', function() {
+  var obj = {
+    favorites: []
+  };
+
+  return {
+    addGifToFavorites: function(gif) {
+      obj.favorites.unshift(gif);
+    },
+    returnFavorites: function() {
+      debugger;
+      return obj.favorites;
     }
   }
 });
