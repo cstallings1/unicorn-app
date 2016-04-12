@@ -22,3 +22,40 @@ var app = angular.module('starter', ['ionic', 'starter.services', 'starter.contr
     }
   });
 })
+
+.config(function($stateProvider, $urlRouterProvider) {
+
+  $stateProvider
+
+  .state('tab', {
+    url: '/tab',
+    abstract: true,
+    templateUrl: 'templates/tabs.html',
+    controller: 'UnicornCtrl'
+  })
+
+  .state('tab.home', {
+    url: '/home',
+    views: {
+      'tab-home': {
+        templateUrl: 'templates/home.html',
+        controller: 'UnicornCtrl'
+      }
+    }
+  })
+
+  .state('tab.trending', {
+      url: '/trending',
+      views: {
+        'tab-trending': {
+          templateUrl: 'templates/trending.html',
+          controller: 'TrendingCtrl'
+        }
+      }
+    })
+  // If none of the above states are matched, use this as the fallback:
+  $urlRouterProvider.otherwise('/tab/home');
+
+});
+
+
