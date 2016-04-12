@@ -12,7 +12,7 @@ angular.module('starter.controllers', [])
       $scope.gifs = gifs.data;
       $ionicScrollDelegate.scrollTop();
     }
-    )};
+  )};
 
   $scope.favorite = function(gif) {
     User.addGifToFavorites(gif);
@@ -44,7 +44,6 @@ angular.module('starter.controllers', [])
     $scope.modal.hide();
     $scope.modal.remove()
   };
-
 })
 
 .controller('TrendingCtrl', function($scope, $ionicModal, Trending, User) {
@@ -108,7 +107,6 @@ angular.module('starter.controllers', [])
     $scope.modal.hide();
     $scope.modal.remove()
   };
-
 });
 
 
