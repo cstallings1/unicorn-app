@@ -1,5 +1,5 @@
 // Ionic Starter App
-var app = angular.module('starter', ['ionic', 'starter.services', 'starter.controllers'])
+var app = angular.module('starter', ['ionic', 'ngStorage', 'starter.services', 'starter.controllers'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

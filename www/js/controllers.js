@@ -1,7 +1,17 @@
 angular.module('starter.controllers', [])
 
-.controller('UnicornCtrl', function($scope, $ionicModal, $ionicScrollDelegate, Unicorns, User) {
+.controller('UnicornCtrl', function($scope, $ionicModal, $ionicScrollDelegate, Unicorns, User, StorageService) {
   $scope.gifs = [];
+
+  $scope.favorites = StorageService.getAll();
+
+  $scope.add = function (newThing) {
+    StorageService.add(newThing);
+  };
+
+  $scope.remove = function (thing) {
+    StorageService.remove(thing);
+  };
 
   Unicorns.search('unicorns').then(function(gifs) {
      $scope.gifs = gifs.data;

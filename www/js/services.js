@@ -48,26 +48,50 @@ angular.module('starter.services', [])
   }
 })
 
-.factory('User', function() {
-  var obj = {
+.factory('User', function($localStorage) {
+  $localStorage = $localStorage.$default({
     favorites: []
-  };
+  });
 
   function isDuplicateGif(gif) {
-    if (!obj.favorites) return false;
-    return obj.favorites.some(function(savedGif){
+    if (!$localStorage.favorites) return false;
+    return $localStorage.favorites.some(function(savedGif){
       return savedGif.id === gif.id;
     })
   }
 
   return {
     addGifToFavorites: function(gif) {
-      if (!isDuplicateGif(gif)) obj.favorites.unshift(gif);
+      if (!isDuplicateGif(gif)) {
+        // obj.favorites.unshift(gif);
+        $localStorage.favorites.push(gif)
+      }
     },
     returnFavorites: function() {
-      return obj.favorites;
+      // return obj.favorites;
+      return $localStorage.favorites;
     }
   }
+})
+
+.factory('StorageService', function($localStorage) {
+  var _getAll = function() {
+    return $localStorage.things;
+  };
+
+  var _add = function(thing) {
+    $localStorage.things.push(thing)
+  };
+
+  var _remove = function(thing) {
+    $localStorage.things.splice($localStorage.things.indexOf(thing), 1);
+  };
+
+  return {
+    getAll: _getAll,
+    add: _add,
+    remove: _remove
+  };
 });
 
 
