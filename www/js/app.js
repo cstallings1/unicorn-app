@@ -55,7 +55,6 @@ var app = angular.module('starter', ['ionic', 'ngStorage', 'starter.services', '
     })
 
   $urlRouterProvider.otherwise('/tab/home');
-
 });
 
 
