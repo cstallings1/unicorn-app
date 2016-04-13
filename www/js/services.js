@@ -15,6 +15,7 @@ angular.module('starter.services', [])
         return gifs;
       });
     },
+
     GetMoreGifs: function(array){
       return $http.get('http://api.giphy.com/v1/gifs/search?q=' + obj.term + '&limit=10&offset=' + array.length + '&api_key=dc6zaTOxFJmzC')
       .then(function(response){
@@ -38,6 +39,7 @@ angular.module('starter.services', [])
         return gifs;
       });
     },
+
     GetMoreGifs: function(array){
       return $http.get('http://api.giphy.com/v1/gifs/trending?limit=10&offset=' + array.length + '&api_key=dc6zaTOxFJmzC')
       .then(function(response){
@@ -63,12 +65,15 @@ angular.module('starter.services', [])
   return {
     addGifToFavorites: function(gif) {
       if (!isDuplicateGif(gif)) {
-        // obj.favorites.unshift(gif);
-        $localStorage.favorites.push(gif)
+        $localStorage.favorites.unshift(gif)
       }
     },
+
+    deleteGifFromFavorites: function(gif) {
+      $localStorage.favorites.splice($localStorage.favorites.indexOf(gif), 1);
+    },
+
     returnFavorites: function() {
-      // return obj.favorites;
       return $localStorage.favorites;
     }
   }
@@ -76,21 +81,11 @@ angular.module('starter.services', [])
 
 .factory('StorageService', function($localStorage) {
   var _getAll = function() {
-    return $localStorage.things;
-  };
-
-  var _add = function(thing) {
-    $localStorage.things.push(thing)
-  };
-
-  var _remove = function(thing) {
-    $localStorage.things.splice($localStorage.things.indexOf(thing), 1);
+    return $localStorage.favorites;
   };
 
   return {
     getAll: _getAll,
-    add: _add,
-    remove: _remove
   };
 });
 

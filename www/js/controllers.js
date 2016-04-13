@@ -26,6 +26,10 @@ angular.module('starter.controllers', [])
 
   $scope.favorite = function(gif) {
     User.addGifToFavorites(gif);
+  };
+
+  $scope.deleteFavorite = function(gif) {
+    User.deleteGifFromFavorites(gif);
   }
 
   $scope.loadMoreGifs = function() {
@@ -72,6 +76,10 @@ angular.module('starter.controllers', [])
 
   $scope.favorite = function(gif) {
     User.addGifToFavorites(gif);
+  }
+
+  $scope.deleteFavorite = function(gif) {
+    User.deleteGifFromFavorites(gif);
   }
 
   $scope.showImages = function(index) {

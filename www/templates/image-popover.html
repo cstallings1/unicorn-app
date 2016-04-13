@@ -1,10 +1,14 @@
 <div class="modal image-modal transparent" ng-click="closeModal()">
   <div active-slide="activeSlide">
     <img ng-src="{{ gifs[activeSlide].images.fixed_height.url }}" class="fullscreen-image"/>
-    <div class="tabs tabs-icon-top" ng-click="favorite(gifs[activeSlide])">
-      <a class="tab-item">
+    <div class="tabs tabs-icon-top">
+      <a class="tab-item" ng-click="favorite(gifs[activeSlide])">
         <i class="icon ion-heart"></i>
         Add To Favorites
+      </a>
+      <a class="tab-item" ng-click="deleteFavorite(gifs[activeSlide])">
+        <i class="icon ion-trash-a"></i>
+        Remove From Favorites
       </a>
     </div>
   </div>
