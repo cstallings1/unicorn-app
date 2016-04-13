@@ -53,9 +53,16 @@ angular.module('starter.services', [])
     favorites: []
   };
 
+  function isDuplicateGif(gif) {
+    if (!obj.favorites) return false;
+    return obj.favorites.some(function(savedGif){
+      return savedGif.id === gif.id;
+    })
+  }
+
   return {
     addGifToFavorites: function(gif) {
-      obj.favorites.unshift(gif);
+      if (!isDuplicateGif(gif)) obj.favorites.unshift(gif);
     },
     returnFavorites: function() {
       return obj.favorites;
